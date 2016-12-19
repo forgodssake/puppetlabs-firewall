@@ -78,8 +78,8 @@ class firewall::linux::redhat (
         case $::operatingsystemrelease {
           /^7\..*/: {
             case $::operatingsystem {
-              'CentOS': { File["/etc/sysconfig/${service_name}"] { seluser => 'unconfined_u', seltype => 'system_conf_t' } }
-              default : { File["/etc/sysconfig/${service_name}"] { seluser => 'unconfined_u', seltype => 'etc_t' } }
+              'CentOS','RedHat': { File["/etc/sysconfig/${service_name}"] { seluser => 'unconfined_u', seltype => 'system_conf_t' } }
+              default:           { File["/etc/sysconfig/${service_name}"] { seluser => 'unconfined_u', seltype => 'etc_t' } }
             }
           }
           /^6\..*/:     { File["/etc/sysconfig/${service_name}"] { seluser => 'unconfined_u', seltype => 'system_conf_t' } }
